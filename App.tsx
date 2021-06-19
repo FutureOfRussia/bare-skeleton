@@ -1,19 +1,31 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { initialWindowMetrics, SafeAreaProvider } from 'react-native-safe-area-context'
+import { Provider } from 'react-redux'
+import { View } from 'react-native'
+import React, { useState } from 'react'
+
+import { useCachedResources, useDebounce } from './src/hooks'
+import Navigation from './src/navigation'
+import { Styles } from './src/constants'
+import store from './src/store'
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
-  );
-}
+  const [rootViewIsLayout, setRootViewIsLayout] = useState(false)
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  useDebounce()
+
+  const appIsReady = useCachedResources(rootViewIsLayout)
+
+  if (!appIsReady) {
+    return null
+  }
+
+  return (
+    <View style={Styles.fullFlex} onLayout={() => setRootViewIsLayout(true)}>
+      <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+        <Provider store={store}>
+          <Navigation />
+        </Provider>
+      </SafeAreaProvider>
+    </View>
+  )
+}

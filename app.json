@@ -4,9 +4,15 @@
   "expo": {
     "name": "bare-skeleton",
     "slug": "bare-skeleton",
+    "scheme": "bare-skeleton",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "splash": {
+      "image": "./assets/splash.png",
+      "backgroundColor": "#ffffff"
+    },
+    "icon": "./assets/icon.png"
   }
 }
