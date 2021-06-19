@@ -1,0 +1,12 @@
+{
+  "name": "bare-skeleton",
+  "displayName": "bare-skeleton",
+  "expo": {
+    "name": "bare-skeleton",
+    "slug": "bare-skeleton",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
